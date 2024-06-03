@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Estate {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  src         String
+  price       Float
+  type        String
+  category    String
+  goal        String
+  author      String
+  size        String
+  description String
+  userEmail   String?
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  name     String
+  password String
+}
